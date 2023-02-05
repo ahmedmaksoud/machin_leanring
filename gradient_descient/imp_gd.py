@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 
 data_single = np.genfromtxt('RegData.csv', delimiter=',')
 
+#convert to vector
 X_fe = data_single[:,0].reshape(-1,1)
 Y_fe = data_single[:,1].reshape(-1,1)
 
@@ -22,7 +23,7 @@ thetas_single = np.zeros(2)
 # let we start theta 0 and  theta 1 with zero
 thetas_single = np.zeros(2)
 
-
+# will return  a vector (array) of all X elements * theta 1
 def predict_single(X, theta_input):
     #p = theta0 + theta1 * x
     predicts = thetas_single[0] + thetas_single[1] * X
@@ -48,6 +49,7 @@ print ("cost_single ",cost_single_p  )
 
 def gradient_single(X, Y, theta_input):
     
+    # array of predicts 
     predicts = predict_single(X, theta_input)
     
     h_y_0 =( predicts - Y)  * 1
@@ -66,7 +68,7 @@ gradient_single_p = gradient_single(X_fe, Y_fe, thetas_single)
 print ("gradient_single ",gradient_single_p  )    
     
 
-
+# trying to make it dynamic No of theta [partior gradient]
 def update_thetas(X, y, theta_input, alfa):
     
     grads = gradient_single(X, y, theta_input)
